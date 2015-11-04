@@ -12,6 +12,8 @@
 # find file command
 # find <directory> -name "<regex>"
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+
 source ~/git-completion.bash
 
 COLOR_OFF='\e[0m'
