@@ -1,3 +1,11 @@
+# debian setup
+# $ su
+# $ apt-get install sudo
+# $ add-user <username> sudo
+# $ exit (logout and login)
+# $ sudo apt-get install vim git build-essential xorg openbox 
+# $ sudo update-alternatives –config editor (select vim)
+
 # unarchive commands
 # *.tar.bz2 -> tar xvjf <filename>
 # *.tar.gz  -> tar xvzf <filename>
@@ -11,7 +19,7 @@
 # *.zip     -> unzip    <filename>
 
 # find file command
-# find <directory> -name "<regex>"
+# $ find <directory> -name "<regex>"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
