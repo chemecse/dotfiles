@@ -1,6 +1,7 @@
 # unarchive commands
 # *.tar.bz2 -> tar xvjf <filename>
 # *.tar.gz  -> tar xvzf <filename>
+# *.tar.xz  -> tar xvJf <filename>
 # *.bz2     -> bunzip2  <filename>
 # *.rar     -> unrar x  <filename>
 # *.gz      -> gunzip   <filename>
