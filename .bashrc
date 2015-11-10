@@ -1,9 +1,10 @@
 # debian setup
+# *select ssh server, laptop tools, and system utilities
 # $ su
 # $ apt-get install sudo
 # $ add-user <username> sudo
 # $ exit (logout and login)
-# $ sudo apt-get install vim git build-essential xorg openbox 
+# $ sudo apt-get install vim git build-essential xorg openbox
 # $ sudo update-alternatives –config editor (select vim)
 
 # unarchive commands
