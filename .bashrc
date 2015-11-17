@@ -1,11 +1,10 @@
-# debian setup
-# *select ssh server, laptop tools, and system utilities
+# debian base setup
 # $ su
 # $ apt-get install sudo
 # $ add-user <username> sudo
 # $ exit (logout and login)
 # $ sudo apt-get install vim git build-essential xorg openbox
-# $ sudo update-alternatives –config editor (select vim)
+# $ sudo update-alternatives -–config editor (select vim)
 
 # unarchive commands
 # *.tar.bz2 -> tar xvjf <filename>
