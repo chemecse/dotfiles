@@ -6,6 +6,14 @@
 # $ sudo apt-get install vim git build-essential xorg openbox
 # $ sudo update-alternatives -–config editor (select vim)
 
+# fedora base setup
+# $ su
+# $ sudo dnf install vim
+# $ sudo vim /etc/sudoers
+# <add line> "chemecse\tADD=(ADD)\tADD"
+# $ exit
+# $ sudo dnf install git gcc xorg-x11-\* openbox
+
 # unarchive commands
 # *.tar.bz2 -> tar xvjf <filename>
 # *.tar.gz  -> tar xvzf <filename>
