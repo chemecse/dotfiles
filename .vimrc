@@ -169,6 +169,10 @@ elseif has('win32') || has('win64')
     set wildignore+=*.dll
 endif
 
+" Display man pages in a split
+runtime ftplugin/man.vim
+nnoremap K :<C-U>exe "Man" v:count "<C-R><C-W>"<CR>
+
 " }}}
 
 "" Org {{{
