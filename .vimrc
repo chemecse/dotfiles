@@ -153,6 +153,16 @@ nnoremap <space> za
 
 " }}}
 
+"" IDE {{{
+
+" Have the command 'make' run a build.sh located in the current directory
+set makeprg=./build.sh
+
+" Run make and open build results in a scratch buffer with ,b
+noremap <leader>b :make<CR> :copen<CR>
+
+"}}}
+
 "" Misc {{{
 
 " Enable per-direction vimrc files (.lvimrc)
