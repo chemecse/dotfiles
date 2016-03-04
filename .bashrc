@@ -31,7 +31,7 @@
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
-source ~/git-completion.bash
+source ~/.git-completion.bash
 
 COLOR_OFF='\e[0m'
 COLOR_BLACK='\e[0;30m'
