@@ -52,8 +52,8 @@ COLOR_PURPLE_BOLD='\e[1;35m'
 COLOR_CYAN_BOLD='\e[1;36m'
 COLOR_WHITE_BOLD='\e[1;37m'
 
-alias l="ls -laG"
-alias ls="ls -G"
+alias l="ls -laG --color"
+alias ls="ls -G --color"
 
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
