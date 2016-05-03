@@ -6,8 +6,20 @@ USERNAME="chemecse"
 NAME="Lars Hamre"
 EMAIL="chemecse@gmail.com"
 
+
+### vim setup
+
 sudo dnf install -y vim
+vim -c "VundleInstall" -c "qa"
+
+### gcc setup
+
+sudo dnf install -y gcc
 sudo dnf install -y gcc-c++
+
+### git setup
+
+sudo dnf install -y git
 sudo dnf install -y git-email
 
 git config --global user.email $EMAIL
