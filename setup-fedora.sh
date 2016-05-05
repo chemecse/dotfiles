@@ -6,6 +6,13 @@ USERNAME="chemecse"
 NAME="Lars Hamre"
 EMAIL="chemecse@gmail.com"
 
+### notes
+
+# enable a text login
+# $ systemctl set-default multi-user.target
+
+# enable a graphical login
+# $ systemctl set-default graphical.target
 
 ### vim setup
 
