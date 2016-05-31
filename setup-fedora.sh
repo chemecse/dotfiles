@@ -37,6 +37,39 @@ git config --global sendemail.smtpserverport 587
 git config --global sendemail.smtpencryption tls
 git config --global sendemail.smtpuser $EMAIL
 
+### mutt setup
+
+sudo dnf install -y mutt
+
+EMAIL_USERNAME="chemecse"
+MUTTDIR="/home/$USERNAME/.mutt"
+MUTTRC="/home/$USERNAME/.muttrc"
+
+mkdir -p $MUTTDIR/cache
+
+echo "" >  $MUTTRC
+echo "set from = \"$EMAIL\"" >> $MUTTRC
+echo "set realname = \"$NAME\"" >> $MUTTRC
+echo "set header_cache = \"$MUTTDIR/cache/headers\"" >> $MUTTRC
+echo "set message_cachedir = \"$MUTTDIR/cache/bodies\"" >> $MUTTRC
+echo "set certificate_file = \"$MUTTDIR/certificates\"" >> $MUTTRC
+echo "set smtp_url = \"smtp://$EMAIL_USERNAME@smtp.gmail.com:587/\"" >> $MUTTRC
+echo "set move = no" >> $MUTTRC
+
+# how to send email via a script
+# 1) set smtp_pass in .muttrc
+#    $ echo "set smtp_pass = \"$EMAIL_PASSWORD\"" >> $MUTTRC
+# 2) sample script
+#    to="hello@world.org"
+#    subject="hello, world"
+#    body="there are attachments"
+#    echo $body | mutt -s "$subject" $to -a attachment.txt
+
+### kernel development setup
+
+sudo dnf install -y kernel-devel
+sudo dnf install -y sysklogd
+
 ### mesa development setup
 
 sudo dnf install -y autoconf
@@ -64,7 +97,7 @@ echo -e "set expandtab\nset tabstop=3\nset softtabstop=3\nset shiftwidth=3\n" > 
 
 echo -e '#!/bin/sh\n'"LD_LIBRARY_PATH=$MESADIR/lib LIBGL_DRIVERS_PATH=$MESADIR/lib "'$@\n' > mesadev
 chmod u+rwx mesadev
-sudo mv mesadev /usr/bin/mesadev
+sudo mv mesadev /usr/local/bin/mesadev
 
 ### piglit development setup
 
