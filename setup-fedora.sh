@@ -2,9 +2,20 @@
 
 set -eu
 
-USERNAME="chemecse"
-NAME="Lars Hamre"
-EMAIL="chemecse@gmail.com"
+# setup-fedora
+#
+# This script automates the setup of a development environment
+# running Fedora Workstation.
+#
+# The development environment includes (but is not limited to):
+# - linux kernel
+# - mesa
+# - piglit
+#
+
+readonly USERNAME="chemecse"
+readonly NAME="Lars Hamre"
+readonly EMAIL="chemecse@gmail.com"
 
 ### notes
 
@@ -41,9 +52,9 @@ git config --global sendemail.smtpuser $EMAIL
 
 sudo dnf install -y mutt
 
-EMAIL_USERNAME="chemecse"
-MUTTDIR="/home/$USERNAME/.mutt"
-MUTTRC="/home/$USERNAME/.muttrc"
+readonly EMAIL_USERNAME="chemecse"
+readonly MUTTDIR="/home/$USERNAME/.mutt"
+readonly MUTTRC="/home/$USERNAME/.muttrc"
 
 mkdir -p $MUTTDIR/cache
 
@@ -58,7 +69,7 @@ echo "set move = no" >> $MUTTRC
 
 # how to send email via a script
 # 1) set smtp_pass in .muttrc
-#    $ echo "set smtp_pass = \"$EMAIL_PASSWORD\"" >> $MUTTRC
+#    $ echo "set smtp_pass = \"your_password_here\"" >> $MUTTRC
 # 2) sample script
 #    to="hello@world.org"
 #    subject="hello, world"
@@ -85,19 +96,22 @@ sudo dnf install -y xorg-x11-server-devel
 sudo dnf install -y systemd-devel
 sudo dnf install -y expat-devel
 
-MESADIR="/home/$USERNAME/Documents/mesa-dev/mesa"
+readonly MESADIR="/home/$USERNAME/Documents/mesa-dev/mesa"
 mkdir -p $MESADIR
 git clone git://anongit.freedesktop.org/git/mesa/mesa $MESADIR
 pushd $MESADIR
-./autogen.sh --prefix=$MESADIR --enable-debug --with-dri-drivers=swrast --with-gallium-drivers= --with-egl-platforms=x11,drm
+./autogen.sh --prefix=$MESADIR --enable-debug --disable-gallium-llvm --with-dri-drivers=swrast --with-gallium-drivers=swrast --with-egl-platforms=x11,drm
 make
 popd
 
 echo -e "set expandtab\nset tabstop=3\nset softtabstop=3\nset shiftwidth=3\n" > $MESADIR/../.lvimrc
 
-echo -e '#!/bin/sh\n'"LD_LIBRARY_PATH=$MESADIR/lib LIBGL_DRIVERS_PATH=$MESADIR/lib "'$@\n' > mesadev
-chmod u+rwx mesadev
-sudo mv mesadev /usr/local/bin/mesadev
+echo -e '#!/bin/sh\n'"LD_LIBRARY_PATH=$MESADIR/lib LIBGL_DRIVERS_PATH=$MESADIR/lib "'$@\n' > mesadev-dri
+echo -e '#!/bin/sh\n'"LD_LIBRARY_PATH=$MESADIR/lib LIBGL_DRIVERS_PATH=$MESADIR/lib/gallium "'$@\n' > mesadev-gallium
+chmod u+rwx mesadev-dri
+chmod u+rwx mesadev-gallium
+sudo mv mesadev-dri /usr/local/bin/mesadev-dri
+sudo mv mesadev-gallium /usr/local/bin/mesadev-gallium
 
 ### piglit development setup
 
@@ -107,7 +121,7 @@ sudo dnf install -y python3-numpy
 sudo dnf install -y mesa-libEGL-devel
 sudo dnf install -y mesa-libGLU-devel
 
-PIGLITDIR="/home/$USERNAME/Documents/piglit-dev/piglit"
+readonly PIGLITDIR="/home/$USERNAME/Documents/piglit-dev/piglit"
 mkdir -p $PIGLITDIR
 git clone git://anongit.freedesktop.org/git/piglit $PIGLITDIR
 pushd $PIGLITDIR
