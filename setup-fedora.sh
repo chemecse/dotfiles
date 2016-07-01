@@ -13,6 +13,11 @@ set -eu
 # - piglit
 #
 
+### instructions
+
+# run the following command:
+# $ curl https://raw.githubusercontent.com/chemecse/dotfiles/master/setup-fedora.sh > setup-fedora.sh && sh setup-fedora.sh
+
 ### notes
 
 # enable a text login
@@ -20,7 +25,6 @@ set -eu
 
 # enable a graphical login
 # $ systemctl set-default graphical.target
-
 
 readonly USERNAME="chemecse"
 readonly NAME="Lars Hamre"
