@@ -13,10 +13,6 @@ set -eu
 # - piglit
 #
 
-readonly USERNAME="chemecse"
-readonly NAME="Lars Hamre"
-readonly EMAIL="chemecse@gmail.com"
-
 ### notes
 
 # enable a text login
@@ -25,15 +21,10 @@ readonly EMAIL="chemecse@gmail.com"
 # enable a graphical login
 # $ systemctl set-default graphical.target
 
-### vim setup
 
-sudo dnf install -y vim
-vim -c "VundleInstall" -c "qa"
-
-### gcc setup
-
-sudo dnf install -y gcc
-sudo dnf install -y gcc-c++
+readonly USERNAME="chemecse"
+readonly NAME="Lars Hamre"
+readonly EMAIL="chemecse@gmail.com"
 
 ### git setup
 
@@ -47,6 +38,31 @@ git config --global sendemail.smtpserver smtp.gmail.com
 git config --global sendemail.smtpserverport 587
 git config --global sendemail.smtpencryption tls
 git config --global sendemail.smtpuser $EMAIL
+
+### setup dotfiles
+
+pushd /home/$USERNAME
+
+git clone https://github.com/chemecse/dotfiles.git
+
+cp ~/dotfiles/.inputrc             ~/.inputrc
+cp ~/dotfiles/.gitconfig           ~/.gitconfig
+cp ~/dotfiles/.git-completion.bash ~/.git-completion.bash
+cp ~/dotfiles/.bashrc              ~/.bashrc
+cp ~/dotfiles/.vimrc               ~/.vimrc
+
+popd
+
+### vim setup
+
+sudo dnf install -y vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim -c "VundleInstall" -c "qa"
+
+### gcc setup
+
+sudo dnf install -y gcc
+sudo dnf install -y gcc-c++
 
 ### mutt setup
 
