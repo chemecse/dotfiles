@@ -1,0 +1,12 @@
+### notes
+
+# enable a text login
+# $ systemctl set-default multi-user.target
+
+# enable a graphical login
+# $ systemctl set-default graphical.target
+
+# kernel dev setup
+# $ sudo dnf install -y kernel-devel
+# $ sudo dnf install -y sysklogd
+
