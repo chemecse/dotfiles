@@ -24,8 +24,6 @@ sudo dnf install -y expat-devel
 
 mkdir -p $MESADIR
 
-echo -e "set expandtab\nset tabstop=3\nset softtabstop=3\nset shiftwidth=3\n" > $MESADIR/../.lvimrc
-
 echo -e '#!/bin/sh\n'"LD_LIBRARY_PATH=$MESADIR/lib LIBGL_DRIVERS_PATH=$MESADIR/lib "'$@\n' > mesadev-dri
 echo -e '#!/bin/sh\n'"LD_LIBRARY_PATH=$MESADIR/lib LIBGL_DRIVERS_PATH=$MESADIR/lib/gallium "'$@\n' > mesadev-gallium
 chmod u+rwx mesadev-dri

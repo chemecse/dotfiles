@@ -12,6 +12,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'embear/vim-localvimrc'
+Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()
 let g:indent_guides_enable_on_vim_startup=1
 let g:syntastic_check_on_open=1
