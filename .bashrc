@@ -33,24 +33,17 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 source ~/.git-completion.bash
 
-readonly COLOR_OFF='\e[0m'
-readonly COLOR_BLACK='\e[0;30m'
-readonly COLOR_RED='\e[0;31m'
-readonly COLOR_GREEN='\e[0;32m'
-readonly COLOR_YELLOW='\e[0;33m'
-readonly COLOR_BLUE='\e[0;34m'
-readonly COLOR_PURPLE='\e[0;35m'
-readonly COLOR_CYAN='\e[0;36m'
-readonly COLOR_WHITE='\e[0;37m'
+CLEAR='\e[0m'
+BOLD='\e[1m'
 
-readonly COLOR_BLACK_BOLD='\e[1;30m'
-readonly COLOR_RED_BOLD='\e[1;31m'
-readonly COLOR_GREEN_BOLD='\e[1;32m'
-readonly COLOR_YELLOW_BOLD='\e[1;33m'
-readonly COLOR_BLUE_BOLD='\e[1;34m'
-readonly COLOR_PURPLE_BOLD='\e[1;35m'
-readonly COLOR_CYAN_BOLD='\e[1;36m'
-readonly COLOR_WHITE_BOLD='\e[1;37m'
+BLACK='\e[0;30m'
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+YELLOW='\e[0;33m'
+BLUE='\e[0;34m'
+PURPLE='\e[0;35m'
+CYAN='\e[0;36m'
+WHITE='\e[0;37m'
 
 alias l="ls -laG --color"
 alias ls="ls -G --color"
@@ -60,11 +53,11 @@ function parse_git_branch {
 }
 
 function set_prompt {
-  local return_status_color=$COLOR_GREEN
+  local return_status_color=$GREEN
   if [[ ! $1 != 0 ]]; then
-    return_status_color=$COLOR_RED
+    return_status_color=$RED
   fi
-  PS1="$COLOR_CYAN_BOLD\W $COLOR_BLUE_BOLD\$(parse_git_branch) $return_status_color\$$COLOR_OFF "
+  PS1="\[$BOLD$CYAN\]\W \[$BLUE\]\$(parse_git_branch) \[$return_status_color\]\$\[$CLEAR\] "
 }
 set_prompt
 
