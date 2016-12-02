@@ -93,13 +93,13 @@ set mouse=a
 "" Spaces, Tabs, and Indents. Oh my! {{{
 
 " Number of visual spaces per tab
-set tabstop=4
+set tabstop=8
 
 " Number of spaces in a tab when editing
-set softtabstop=4
+set softtabstop=8
 
 " Number of spaces in a tab when moving
-set shiftwidth=4
+set shiftwidth=8
 
 " Copy indent from current line when starting a new one
 set autoindent
