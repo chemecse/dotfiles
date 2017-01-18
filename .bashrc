@@ -57,7 +57,7 @@ function set_prompt {
   if [[ ! $1 != 0 ]]; then
     return_status_color=$RED
   fi
-  PS1="\[$BOLD$CYAN\]\W \[$BLUE\]\$(parse_git_branch) \[$return_status_color\]\$\[$CLEAR\] "
+  PS1="\[$BOLD$CYAN\]\W \[$BLUE\]\$(parse_git_branch) \[$CLEAR$return_status_color\]\$\[$CLEAR\] "
 }
 set_prompt
 
