@@ -36,7 +36,7 @@ pushd $MESADIR
 git remote add upstream git://anongit.freedesktop.org/git/mesa/mesa
 git fetch upstream master
 git merge upstream/master
-./autogen.sh --prefix=$MESADIR --enable-debug --disable-gallium-llvm --with-dri-drivers=swrast --with-gallium-drivers=swrast --with-egl-platforms=x11,drm
+./autogen.sh --prefix=$MESADIR --enable-debug --disable-gallium-llvm --with-dri-drivers= --with-gallium-drivers=swrast --with-egl-platforms=x11,drm
 make
 popd
 
