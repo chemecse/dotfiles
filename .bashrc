@@ -47,6 +47,8 @@ WHITE='\e[0;37m'
 
 alias l="ls -laG --color"
 alias ls="ls -G --color"
+alias git_diff_no_whitespace="git diff -U0 -w $@"
+alias git_add_no_whitespace="git diff -U0 -w --no-color $@ | git apply --cached --ignore-whitespace --unidiff-zero -"
 
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
