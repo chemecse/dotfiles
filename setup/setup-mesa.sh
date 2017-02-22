@@ -22,6 +22,10 @@ sudo dnf install -y xorg-x11-server-devel
 sudo dnf install -y systemd-devel
 sudo dnf install -y expat-devel
 
+# llvm
+sudo dnf install -y llvm-devel
+sudo dnf install -y redhat-rpm-config
+
 mkdir -p $MESADIR
 
 echo -e '#!/bin/sh\n'"LD_LIBRARY_PATH=$MESADIR/lib LIBGL_DRIVERS_PATH=$MESADIR/lib "'$@\n' > mesadev-dri
@@ -31,12 +35,21 @@ chmod u+rwx mesadev-gallium
 sudo mv mesadev-dri /usr/local/bin/mesadev-dri
 sudo mv mesadev-gallium /usr/local/bin/mesadev-gallium
 
+echo -e '#!/bin/sh\nDIR="$(cd  "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"\npushd $DIR\n./autogen.sh --prefix=$DIR --enable-debug --disable-gallium-llvm --with-dri-drivers= --with-gallium-drivers=swrast --with-egl-platforms=x11,drm\npopd\n' > $MESADIR/bin/setup/softpipe
+echo -e '#!/bin/sh\nDIR="$(cd  "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"\npushd $DIR\n./autogen.sh --prefix=$DIR --enable-debug --enable-gallium-llvm --with-dri-drivers= --with-gallium-drivers=swrast --with-egl-platforms=x11,drm\npopd\n' > $MESADIR/bin/setup-llvmpipe
+
+chmod u+x $MESADIR/bin/setup-softpipe
+chmod u+x $MESADIR/bin/setup-llvmpipe
+
+echo "bin/setup-softpipe" >> $MESADIR/.git/info/exclude
+echo "bin/setup-llvmpipe" >> $MESADIR/.git/info/exclude
+
 git clone https://github.com/chemecse/mesa.git $MESADIR
 pushd $MESADIR
 git remote add upstream git://anongit.freedesktop.org/git/mesa/mesa
 git fetch upstream master
 git merge upstream/master
-./autogen.sh --prefix=$MESADIR --enable-debug --disable-gallium-llvm --with-dri-drivers= --with-gallium-drivers=swrast --with-egl-platforms=x11,drm
+./bin/setup-softpipe
 make
 popd
 
