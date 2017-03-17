@@ -21,6 +21,7 @@ sudo dnf install -y libxshmfence-devel
 sudo dnf install -y xorg-x11-server-devel
 sudo dnf install -y systemd-devel
 sudo dnf install -y expat-devel
+sudo dnf install -y zlib-devel
 
 # llvm
 sudo dnf install -y llvm-devel
@@ -35,14 +36,17 @@ chmod u+rwx mesadev-gallium
 sudo mv mesadev-dri /usr/local/bin/mesadev-dri
 sudo mv mesadev-gallium /usr/local/bin/mesadev-gallium
 
-echo -e '#!/bin/sh\nDIR="$(cd  "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"\npushd $DIR\n./autogen.sh --prefix=$DIR --enable-debug --disable-gallium-llvm --with-dri-drivers= --with-gallium-drivers=swrast --with-egl-platforms=x11,drm\npopd\n' > $MESADIR/bin/setup/softpipe
+echo -e '#!/bin/sh\nDIR="$(cd  "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"\npushd $DIR\n./autogen.sh --prefix=$DIR --enable-debug --disable-gallium-llvm --with-dri-drivers= --with-gallium-drivers=swrast --with-egl-platforms=x11,drm\npopd\n' > $MESADIR/bin/setup-softpipe
 echo -e '#!/bin/sh\nDIR="$(cd  "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"\npushd $DIR\n./autogen.sh --prefix=$DIR --enable-debug --enable-gallium-llvm --with-dri-drivers= --with-gallium-drivers=swrast --with-egl-platforms=x11,drm\npopd\n' > $MESADIR/bin/setup-llvmpipe
+echo -e '#!/bin/sh\nDIR="$(cd  "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"\npushd $DIR\n./autogen.sh --prefix=$DIR --enable-debug --with-dri-drivers=i965 --with-gallium-drivers= --with-egl-platforms=x11,drm\npopd\n' > $MESADIR/bin/setup-i965
 
 chmod u+x $MESADIR/bin/setup-softpipe
 chmod u+x $MESADIR/bin/setup-llvmpipe
+chmod u+x $MESADIR/bin/setup-i965
 
 echo "bin/setup-softpipe" >> $MESADIR/.git/info/exclude
 echo "bin/setup-llvmpipe" >> $MESADIR/.git/info/exclude
+echo "bin/setup-i965" >> $MESADIR/.git/info/exclude
 
 git clone https://github.com/chemecse/mesa.git $MESADIR
 pushd $MESADIR
